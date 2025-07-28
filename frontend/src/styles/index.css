@@ -1,0 +1,360 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS kustom untuk wave divider */
+.wave-divider {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #FFFFFF;
+    transform: translateX(100px);
+    border-top-left-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+    z-index: 10;
+    box-shadow: -15px 0px 30px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    overflow: hidden; /* Mencegah scrollbar muncul */
+}
+
+.input-field-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-field-wrapper input {
+    padding-right: 2.75rem;
+    padding-left: 1rem;
+}
+
+.input-field-wrapper .input-icon {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    color: #6B7280;
+    font-size: 1.25rem;
+}
+
+/* Untuk ikon mata (eye icon) yang bisa diklik */
+.input-field-wrapper .input-icon.clickable {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* Custom checkbox style */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 0.125rem;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    transition: all 0.15s ease-in-out;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #1A2C49;
+    border-color: #1A2C49;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.3rem;
+    height: 0.6rem;
+    border: solid #FFFFFF;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -60%) rotate(45deg);
+}
+
+input[type="checkbox"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(26, 44, 73, 0.3);
+}
+
+/* Custom styles dari login.html yang perlu dipertahankan */
+.input-icon {
+    transition: color 0.2s ease;
+}
+
+.input-icon:hover {
+    color: #374151;
+}
+
+/* Checkbox di login*/
+
+.login-container {
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.form-input {
+    transition: all 0.2s ease;
+}
+
+.form-input:focus {
+    border-color: #374151;
+    box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.1);
+}
+
+.form-input:hover {
+    border-color: #9CA3AF;
+}
+
+.btn-login {
+    transition: all 0.2s ease;
+}
+
+.btn-login:hover {
+    background-color: #1F2937;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-login:active {
+    transform: translateY(0);
+}
+
+.btn-login:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.message-box {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.message-box.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.message-box.success {
+    background-color: #D1FAE5;
+    color: #065F46;
+    border: 1px solid #34D399;
+}
+
+.message-box.error {
+    background-color: #FEE2E2;
+    color: #991B1B;
+    border: 1px solid #F87171;
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .image-section {
+        height: 40vh;
+        flex: none;
+    }
+
+    .form-section {
+        width: 100%;
+        flex: 1;
+        padding: 2rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .image-section {
+        height: 30vh;
+    }
+
+    .form-section {
+        padding: 1.5rem 1rem;
+    }
+}
+
+@layer base {
+    body {
+        font-family: 'Inter', sans-serif; /* */
+        -webkit-font-smoothing: antialiased; /* */
+        -moz-osx-font-smoothing: grayscale; /* */
+    }
+
+    * {
+        scroll-behavior: smooth; /* */
+    }
+}
+
+@layer utilities {
+    /* Custom Scrollbar Styles */
+    ::-webkit-scrollbar {
+        width: 6px; /* */
+        height: 6px; /* */
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent; /* */
+        border-radius: 10px; /* */
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(156, 163, 175, 0.4); /* */
+        border-radius: 10px; /* */
+        transition: all 0.2s ease; /* */
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(156, 163, 175, 0.7); /* */
+    }
+
+    /* Firefox scrollbar */
+    html {
+        scrollbar-width: thin; /* */
+        scrollbar-color: rgba(156, 163, 175, 0.4) transparent; /* */
+    }
+
+    /* Smooth transitions for all elements */
+    .transition-all-smooth {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* */
+    }
+
+    .transition-transform-smooth {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* */
+    }
+
+    /* Backdrop blur effects */
+    .backdrop-blur-glass {
+        backdrop-filter: blur(12px); /* */
+        -webkit-backdrop-filter: blur(12px); /* */
+        background: rgba(255, 255, 255, 0.85); /* White with opacity */ /* */
+    }
+
+    .backdrop-blur-overlay {
+        backdrop-filter: blur(8px); /* */
+        -webkit-backdrop-filter: blur(8px); /* */
+        background: rgba(0, 0, 0, 0.1); /* Black with opacity */ /* */
+    }
+
+    /* Sidebar animations */
+    .sidebar-slide-in {
+        animation: slideInLeft 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; /* */
+    }
+
+    .sidebar-slide-out {
+        animation: slideOutLeft 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; /* */
+    }
+
+    @keyframes slideInLeft {
+        from {
+            transform: translateX(-100%); /* */
+            opacity: 0; /* */
+        }
+        to {
+            transform: translateX(0); /* */
+            opacity: 1; /* */
+        }
+    }
+
+    @keyframes slideOutLeft {
+        from {
+            transform: translateX(0); /* */
+            opacity: 1; /* */
+        }
+        to {
+            transform: translateX(-100%); /* */
+            opacity: 0; /* */
+        }
+    }
+
+    /* Hover effects */
+    .hover-lift:hover {
+        transform: translateY(-1px); /* */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* */
+    }
+
+    .hover-scale:hover {
+        transform: scale(1.02); /* */
+    }
+
+    /* Button press effect */
+    .active-press:active {
+        transform: scale(0.98); /* */
+    }
+
+    /* Gradient backgrounds */
+    .gradient-primary {
+        background: linear-gradient(135deg, #3B82F6 0%, #6366F1 100%); /* wise-blue-500 to wise-indigo-500 */ /* */
+    }
+
+    .gradient-secondary {
+        background: linear-gradient(135deg, #8B5CF6 0%, #F5576C 100%); /* wise-secondary to a red/pink */ /* */
+    }
+
+    /* Card shadows */
+    .shadow-card {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1); /* */
+    }
+
+    .shadow-card-hover:hover {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.05); /* */
+    }
+
+    /* Loading skeleton */
+    .skeleton {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); /* */
+        background-size: 200% 100%; /* */
+        animation: loading 1.5s infinite; /* */
+    }
+
+    @keyframes loading {
+        0% { background-position: 200% 0; } /* */
+        100% { background-position: -200% 0; } /* */
+    }
+
+    /* Mobile-first responsive utilities */
+    @media (max-width: 768px) { /* */
+        .mobile-full-width {
+            width: 100vw; /* */
+            margin-left: calc(-1 * (100vw - 100%) / 2); /* */
+        }
+    }
+    .fas, .fa-solid {
+        font-weight: 900; /* */
+    }
+}
